@@ -1,0 +1,52 @@
+<!-- templates/layout.html -->
+{{define "layout"}}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Title}} - My Go App</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {{block "home_content" .}}{{end}}
+        {{block "about_content" .}}{{end}}
+    </main>
+    
+    <footer>
+        <p>User: {{.User.Name}} ({{.User.Email}})</p>
+        <p>&copy; 2025 My Go Application</p>
+    </footer>
+    
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
+{{end}}
+
+<!-- templates/home.html -->
+{{define "home_content"}}
+<h1>{{.Title}}</h1>
+<p>Welcome to our Golang Template Demo!</p>
+
+<h2>Items List</h2>
+<ul>
+    {{range .Items}}
+    <li>{{.}}</li>
+    {{end}}
+</ul>
+{{end}}
+
+<!-- templates/about.html -->
+{{define "about_content"}}
+<h1>{{.Title}}</h1>
+<p>This is a demo application showing how to use Go's html/template package.</p>
+<p>It demonstrates template inheritance, data passing, and serving static files.</p>
+{{end}}
